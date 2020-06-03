@@ -18,21 +18,21 @@ class App extends Component {
     const filteredRobots = robots.filter((robot) => {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     });
-    if (robots.length === 0) {
-      return <h1 className="tc f1">Loading</h1>;
-    } else {
-      return (
-        <div className="tc">
-          <Header />
-          <SearchBox searchChange={onSearchChange} />
-          <Scroll>
+    return (
+      <div className="tc">
+        <Header />
+        <SearchBox searchChange={onSearchChange} />
+        <Scroll>
+          {robots.length !== 0 ? (
             <ErrorBox>
               <CardList robots={filteredRobots} />
             </ErrorBox>
-          </Scroll>
-        </div>
-      );
-    }
+          ) : (
+            <h1 className="tc f1">Loading</h1>
+          )}
+        </Scroll>
+      </div>
+    );
   }
 }
 
